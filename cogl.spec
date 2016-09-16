@@ -4,7 +4,7 @@
 #
 Name     : cogl
 Version  : 1.22.0
-Release  : 3
+Release  : 4
 URL      : https://download.gnome.org/core/3.20/3.20.2/sources/cogl-1.22.0.tar.xz
 Source0  : https://download.gnome.org/core/3.20/3.20.2/sources/cogl-1.22.0.tar.xz
 Summary  : Cogl OpenGL ES 2.0 frontend api
@@ -89,7 +89,8 @@ export LANG=C
 %configure --disable-static --enable-cogl-gles2=yes \
 --enable-gles2=yes \
 --enable-gl=yes \
---enable-wayland-egl-platform=yes
+--enable-wayland-egl-platform=yes \
+--enable-wayland-egl-server=yes
 make V=1  %{?_smp_mflags}
 
 %check
@@ -197,6 +198,7 @@ rm -rf %{buildroot}
 /usr/include/cogl/cogl/cogl-vertex-buffer.h
 /usr/include/cogl/cogl/cogl-wayland-client.h
 /usr/include/cogl/cogl/cogl-wayland-renderer.h
+/usr/include/cogl/cogl/cogl-wayland-server.h
 /usr/include/cogl/cogl/cogl-xlib-renderer.h
 /usr/include/cogl/cogl/cogl-xlib.h
 /usr/include/cogl/cogl/cogl.h

@@ -2,3 +2,5 @@
 --enable-gles2=yes
 --enable-gl=yes
 --enable-wayland-egl-platform=yes
+--enable-wayland-egl-server=yes
+
