@@ -4,7 +4,7 @@
 #
 Name     : cogl
 Version  : 1.22.0
-Release  : 1
+Release  : 2
 URL      : https://download.gnome.org/core/3.20/3.20.2/sources/cogl-1.22.0.tar.xz
 Source0  : https://download.gnome.org/core/3.20/3.20.2/sources/cogl-1.22.0.tar.xz
 Summary  : Cogl OpenGL ES 2.0 frontend api
@@ -86,7 +86,9 @@ locales components for the cogl package.
 
 %build
 export LANG=C
-%configure --disable-static
+%configure --disable-static --enable-cogl-gles2=yes \
+--enable-gles2=yes \
+--enable-gl=yes
 make V=1  %{?_smp_mflags}
 
 %check
@@ -114,6 +116,9 @@ rm -rf %{buildroot}
 
 %files dev
 %defattr(-,root,root,-)
+/usr/include/cogl/cogl-gles2/GLES2/gl2.h
+/usr/include/cogl/cogl-gles2/GLES2/gl2ext.h
+/usr/include/cogl/cogl-gles2/GLES2/gl2platform.h
 /usr/include/cogl/cogl-pango/cogl-pango.h
 /usr/include/cogl/cogl-path/cogl-path-enum-types.h
 /usr/include/cogl/cogl-path/cogl-path-types.h
@@ -135,6 +140,8 @@ rm -rf %{buildroot}
 /usr/include/cogl/cogl/cogl-deprecated.h
 /usr/include/cogl/cogl/cogl-depth-state.h
 /usr/include/cogl/cogl/cogl-display.h
+/usr/include/cogl/cogl/cogl-egl-defines.h
+/usr/include/cogl/cogl/cogl-egl.h
 /usr/include/cogl/cogl/cogl-enum-types.h
 /usr/include/cogl/cogl/cogl-error.h
 /usr/include/cogl/cogl/cogl-euler.h
