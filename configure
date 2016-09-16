@@ -1,3 +1,4 @@
 --enable-cogl-gles2=yes
 --enable-gles2=yes
 --enable-gl=yes
+--enable-wayland-egl-platform=yes

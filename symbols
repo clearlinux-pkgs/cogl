@@ -1019,6 +1019,13 @@ libcogl.so.20:cogl_vertex_buffer_submit
 libcogl.so.20:cogl_vertex_buffer_unref
 libcogl.so.20:cogl_vertices_mode_get_type
 libcogl.so.20:cogl_viewport
+libcogl.so.20:cogl_wayland_onscreen_get_shell_surface
+libcogl.so.20:cogl_wayland_onscreen_get_surface
+libcogl.so.20:cogl_wayland_onscreen_resize
+libcogl.so.20:cogl_wayland_onscreen_set_foreign_surface
+libcogl.so.20:cogl_wayland_renderer_get_display
+libcogl.so.20:cogl_wayland_renderer_set_event_dispatch_enabled
+libcogl.so.20:cogl_wayland_renderer_set_foreign_display
 libcogl.so.20:cogl_winding_get_type
 libcogl.so.20:cogl_winsys_feature_get_type
 libcogl.so.20:cogl_x11_onscreen_get_visual_xid

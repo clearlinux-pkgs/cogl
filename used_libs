@@ -15,3 +15,5 @@ libm.so.6
 libpango-1.0.so.0
 libpangocairo-1.0.so.0
 libpthread.so.0
+libwayland-client.so.0
+libwayland-egl.so.1
