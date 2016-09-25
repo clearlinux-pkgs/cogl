@@ -4,12 +4,12 @@
 #
 Name     : cogl
 Version  : 1.22.2
-Release  : 5
-URL      : https://download.gnome.org/core/3.22/3.22.0/sources/cogl-1.22.2.tar.xz
-Source0  : https://download.gnome.org/core/3.22/3.22.0/sources/cogl-1.22.2.tar.xz
+Release  : 6
+URL      : http://ftp.gnome.org/pub/gnome/sources/cogl/1.22/cogl-1.22.2.tar.xz
+Source0  : http://ftp.gnome.org/pub/gnome/sources/cogl/1.22/cogl-1.22.2.tar.xz
 Summary  : A 2D path drawing library for Cogl
 Group    : Development/Tools
-License  : GPL-2.0 LGPL-2.0 MIT
+License  : GPL-2.0 LGPL-2.0 LGPL-2.1 MIT
 Requires: cogl-lib
 Requires: cogl-data
 Requires: cogl-locales
