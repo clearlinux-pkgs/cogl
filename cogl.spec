@@ -4,12 +4,12 @@
 #
 Name     : cogl
 Version  : 1.22.2
-Release  : 6
+Release  : 7
 URL      : http://ftp.gnome.org/pub/gnome/sources/cogl/1.22/cogl-1.22.2.tar.xz
 Source0  : http://ftp.gnome.org/pub/gnome/sources/cogl/1.22/cogl-1.22.2.tar.xz
 Summary  : A 2D path drawing library for Cogl
 Group    : Development/Tools
-License  : GPL-2.0 LGPL-2.0 LGPL-2.1 MIT
+License  : LGPL-2.0 LGPL-2.1 MIT
 Requires: cogl-lib
 Requires: cogl-data
 Requires: cogl-locales
@@ -86,6 +86,7 @@ locales components for the cogl package.
 
 %build
 export LANG=C
+export SOURCE_DATE_EPOCH=1491313828
 %configure --disable-static --enable-cogl-gles2=yes \
 --enable-gles2=yes \
 --enable-gl=yes \
@@ -101,6 +102,7 @@ export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
+export SOURCE_DATE_EPOCH=1491313828
 rm -rf %{buildroot}
 %make_install
 %find_lang cogl
@@ -110,11 +112,12 @@ rm -rf %{buildroot}
 
 %files data
 %defattr(-,root,root,-)
+/usr/lib64/girepository-1.0/Cogl-1.0.typelib
+/usr/lib64/girepository-1.0/Cogl-2.0.typelib
+/usr/lib64/girepository-1.0/CoglPango-1.0.typelib
+/usr/lib64/girepository-1.0/CoglPango-2.0.typelib
 /usr/share/cogl/examples-data/crate.jpg
-/usr/share/gir-1.0/Cogl-1.0.gir
-/usr/share/gir-1.0/Cogl-2.0.gir
-/usr/share/gir-1.0/CoglPango-1.0.gir
-/usr/share/gir-1.0/CoglPango-2.0.gir
+/usr/share/gir-1.0/*.gir
 
 %files dev
 %defattr(-,root,root,-)
@@ -220,17 +223,31 @@ rm -rf %{buildroot}
 /usr/include/cogl/cogl/gl-prototypes/cogl-glsl-functions.h
 /usr/include/cogl/cogl/gl-prototypes/cogl-in-gles-core-functions.h
 /usr/include/cogl/cogl/gl-prototypes/cogl-in-gles2-core-functions.h
-/usr/lib64/*.so
-/usr/lib64/girepository-1.0/Cogl-1.0.typelib
-/usr/lib64/girepository-1.0/Cogl-2.0.typelib
-/usr/lib64/girepository-1.0/CoglPango-1.0.typelib
-/usr/lib64/girepository-1.0/CoglPango-2.0.typelib
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/libcogl-gles2.so
+/usr/lib64/libcogl-pango.so
+/usr/lib64/libcogl-path.so
+/usr/lib64/libcogl.so
+/usr/lib64/pkgconfig/cogl-1.0.pc
+/usr/lib64/pkgconfig/cogl-2.0-experimental.pc
+/usr/lib64/pkgconfig/cogl-gl-1.0.pc
+/usr/lib64/pkgconfig/cogl-gles2-1.0.pc
+/usr/lib64/pkgconfig/cogl-gles2-2.0-experimental.pc
+/usr/lib64/pkgconfig/cogl-pango-1.0.pc
+/usr/lib64/pkgconfig/cogl-pango-2.0-experimental.pc
+/usr/lib64/pkgconfig/cogl-path-1.0.pc
+/usr/lib64/pkgconfig/cogl-path-2.0-experimental.pc
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libcogl-gles2.so.20
+/usr/lib64/libcogl-gles2.so.20.4.2
+/usr/lib64/libcogl-pango.so.20
+/usr/lib64/libcogl-pango.so.20.4.2
+/usr/lib64/libcogl-path.so.20
+/usr/lib64/libcogl-path.so.20.4.2
+/usr/lib64/libcogl.so.20
+/usr/lib64/libcogl.so.20.4.2
 
-%files locales -f cogl.lang 
+%files locales -f cogl.lang
 %defattr(-,root,root,-)
 
