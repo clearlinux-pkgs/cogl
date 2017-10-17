@@ -4,9 +4,9 @@
 #
 Name     : cogl
 Version  : 1.22.2
-Release  : 9
-URL      : http://ftp.gnome.org/pub/gnome/sources/cogl/1.22/cogl-1.22.2.tar.xz
-Source0  : http://ftp.gnome.org/pub/gnome/sources/cogl/1.22/cogl-1.22.2.tar.xz
+Release  : 10
+URL      : https://download.gnome.org/sources/cogl/1.22/cogl-1.22.2.tar.xz
+Source0  : https://download.gnome.org/sources/cogl/1.22/cogl-1.22.2.tar.xz
 Summary  : A 2D path drawing library for Cogl
 Group    : Development/Tools
 License  : LGPL-2.0 LGPL-2.1 MIT
@@ -29,6 +29,7 @@ BuildRequires : pkgconfig(glesv2)
 BuildRequires : pkgconfig(pangocairo)
 BuildRequires : pkgconfig(sdl)
 BuildRequires : pkgconfig(sdl2)
+BuildRequires : pkgconfig(wayland-client)
 BuildRequires : pkgconfig(wayland-egl)
 BuildRequires : pkgconfig(wayland-server)
 BuildRequires : pkgconfig(x11)
@@ -85,8 +86,11 @@ locales components for the cogl package.
 %setup -q -n cogl-1.22.2
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1491313828
+export SOURCE_DATE_EPOCH=1508273998
 %configure --disable-static --enable-cogl-gles2=yes \
 --enable-gles2=yes \
 --enable-gl=yes \
@@ -98,11 +102,11 @@ make V=1  %{?_smp_mflags}
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1491313828
+export SOURCE_DATE_EPOCH=1508273998
 rm -rf %{buildroot}
 %make_install
 %find_lang cogl
