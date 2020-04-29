@@ -4,7 +4,7 @@
 #
 Name     : cogl
 Version  : 1.22.6
-Release  : 17
+Release  : 18
 URL      : https://download.gnome.org/sources/cogl/1.22/cogl-1.22.6.tar.xz
 Source0  : https://download.gnome.org/sources/cogl/1.22/cogl-1.22.6.tar.xz
 Summary  : An object oriented GL/GLES Abstraction/Utility Layer
