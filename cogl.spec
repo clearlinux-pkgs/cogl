@@ -4,7 +4,7 @@
 #
 Name     : cogl
 Version  : 1.22.8
-Release  : 21
+Release  : 22
 URL      : https://download.gnome.org/sources/cogl/1.22/cogl-1.22.8.tar.xz
 Source0  : https://download.gnome.org/sources/cogl/1.22/cogl-1.22.8.tar.xz
 Summary  : An object oriented GL/GLES Abstraction/Utility Layer
@@ -108,7 +108,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1634131906
+export SOURCE_DATE_EPOCH=1634666755
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -126,9 +126,9 @@ make  %{?_smp_mflags}
 
 unset PKG_CONFIG_PATH
 pushd ../buildavx2/
-export CFLAGS="$CFLAGS -m64 -march=x86-64-v3"
-export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3"
-export FFLAGS="$FFLAGS -m64 -march=x86-64-v3"
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
 export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
 export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 %configure --disable-static --enable-cogl-gles2=yes \
@@ -148,7 +148,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1634131906
+export SOURCE_DATE_EPOCH=1634666755
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/cogl
 cp %{_builddir}/cogl-1.22.8/COPYING %{buildroot}/usr/share/package-licenses/cogl/c40ca709f2b0391c439d2a9dce38541da745a1b9
