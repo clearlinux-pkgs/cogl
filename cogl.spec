@@ -4,14 +4,13 @@
 #
 Name     : cogl
 Version  : 1.22.8
-Release  : 24
+Release  : 25
 URL      : https://download.gnome.org/sources/cogl/1.22/cogl-1.22.8.tar.xz
 Source0  : https://download.gnome.org/sources/cogl/1.22/cogl-1.22.8.tar.xz
 Summary  : An object oriented GL/GLES Abstraction/Utility Layer
 Group    : Development/Tools
 License  : LGPL-2.0 MIT
 Requires: cogl-data = %{version}-%{release}
-Requires: cogl-filemap = %{version}-%{release}
 Requires: cogl-lib = %{version}-%{release}
 Requires: cogl-license = %{version}-%{release}
 Requires: cogl-locales = %{version}-%{release}
@@ -61,20 +60,11 @@ Requires: cogl = %{version}-%{release}
 dev components for the cogl package.
 
 
-%package filemap
-Summary: filemap components for the cogl package.
-Group: Default
-
-%description filemap
-filemap components for the cogl package.
-
-
 %package lib
 Summary: lib components for the cogl package.
 Group: Libraries
 Requires: cogl-data = %{version}-%{release}
 Requires: cogl-license = %{version}-%{release}
-Requires: cogl-filemap = %{version}-%{release}
 
 %description lib
 lib components for the cogl package.
@@ -108,7 +98,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1634666755
+export SOURCE_DATE_EPOCH=1656011967
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -148,7 +138,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1634666755
+export SOURCE_DATE_EPOCH=1656011967
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/cogl
 cp %{_builddir}/cogl-1.22.8/COPYING %{buildroot}/usr/share/package-licenses/cogl/c40ca709f2b0391c439d2a9dce38541da745a1b9
@@ -158,7 +148,7 @@ pushd ../buildavx2/
 popd
 %make_install
 %find_lang cogl
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -290,12 +280,20 @@ popd
 /usr/lib64/pkgconfig/cogl-path-1.0.pc
 /usr/lib64/pkgconfig/cogl-path-2.0-experimental.pc
 
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-cogl
-
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-gles2.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-gles2.so.20
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-gles2.so.20.4.3
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-pango.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-pango.so.20
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-pango.so.20.4.3
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-path.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-path.so.20
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-path.so.20.4.3
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl.so.20
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl.so.20.4.3
 /usr/lib64/libcogl-gles2.so.20
 /usr/lib64/libcogl-gles2.so.20.4.3
 /usr/lib64/libcogl-pango.so.20
@@ -304,7 +302,6 @@ popd
 /usr/lib64/libcogl-path.so.20.4.3
 /usr/lib64/libcogl.so.20
 /usr/lib64/libcogl.so.20.4.3
-/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
