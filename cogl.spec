@@ -4,7 +4,7 @@
 #
 Name     : cogl
 Version  : 1.22.8
-Release  : 31
+Release  : 32
 URL      : https://download.gnome.org/sources/cogl/1.22/cogl-1.22.8.tar.xz
 Source0  : https://download.gnome.org/sources/cogl/1.22/cogl-1.22.8.tar.xz
 Summary  : An object oriented GL/GLES Abstraction/Utility Layer
@@ -98,7 +98,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656098743
+export SOURCE_DATE_EPOCH=1664140948
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -138,11 +138,11 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1656098743
+export SOURCE_DATE_EPOCH=1664140948
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/cogl
-cp %{_builddir}/cogl-1.22.8/COPYING %{buildroot}/usr/share/package-licenses/cogl/c40ca709f2b0391c439d2a9dce38541da745a1b9
-cp %{_builddir}/cogl-1.22.8/deps/glib/COPYING %{buildroot}/usr/share/package-licenses/cogl/bf50bac24e7ec325dbb09c6b6c4dcc88a7d79e8f
+cp %{_builddir}/cogl-%{version}/COPYING %{buildroot}/usr/share/package-licenses/cogl/c40ca709f2b0391c439d2a9dce38541da745a1b9 || :
+cp %{_builddir}/cogl-%{version}/deps/glib/COPYING %{buildroot}/usr/share/package-licenses/cogl/bf50bac24e7ec325dbb09c6b6c4dcc88a7d79e8f || :
 pushd ../buildavx2/
 %make_install_v3
 popd
@@ -266,6 +266,10 @@ popd
 /usr/include/cogl/cogl/gl-prototypes/cogl-glsl-functions.h
 /usr/include/cogl/cogl/gl-prototypes/cogl-in-gles-core-functions.h
 /usr/include/cogl/cogl/gl-prototypes/cogl-in-gles2-core-functions.h
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-gles2.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-pango.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-path.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl.so
 /usr/lib64/libcogl-gles2.so
 /usr/lib64/libcogl-pango.so
 /usr/lib64/libcogl-path.so
@@ -282,16 +286,12 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-gles2.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-gles2.so.20
 /usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-gles2.so.20.4.3
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-pango.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-pango.so.20
 /usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-pango.so.20.4.3
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-path.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-path.so.20
 /usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-path.so.20.4.3
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libcogl.so.20
 /usr/lib64/glibc-hwcaps/x86-64-v3/libcogl.so.20.4.3
 /usr/lib64/libcogl-gles2.so.20
