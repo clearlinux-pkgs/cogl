@@ -5,7 +5,7 @@
 #
 Name     : cogl
 Version  : 1.22.8
-Release  : 35
+Release  : 36
 URL      : https://download.gnome.org/sources/cogl/1.22/cogl-1.22.8.tar.xz
 Source0  : https://download.gnome.org/sources/cogl/1.22/cogl-1.22.8.tar.xz
 Summary  : An object oriented GL/GLES Abstraction/Utility Layer
@@ -18,9 +18,24 @@ Requires: cogl-locales = %{version}-%{release}
 BuildRequires : buildreq-configure
 BuildRequires : buildreq-gnome
 BuildRequires : cairo-dev
+BuildRequires : docbook-xml
+BuildRequires : gettext
 BuildRequires : gtk-doc
 BuildRequires : gtk-doc-dev
+BuildRequires : libxslt-bin
 BuildRequires : mesa-dev
+BuildRequires : perl(XML::Parser)
+BuildRequires : pkgconfig(egl)
+BuildRequires : pkgconfig(gbm)
+BuildRequires : pkgconfig(gdk-pixbuf-2.0)
+BuildRequires : pkgconfig(glesv1_cm)
+BuildRequires : pkgconfig(glesv2)
+BuildRequires : pkgconfig(sdl)
+BuildRequires : pkgconfig(sdl2)
+BuildRequires : pkgconfig(wayland-client)
+BuildRequires : pkgconfig(wayland-egl)
+BuildRequires : pkgconfig(wayland-server)
+BuildRequires : pkgconfig(x11)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -88,7 +103,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680019579
+export SOURCE_DATE_EPOCH=1682704185
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -128,7 +143,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1680019579
+export SOURCE_DATE_EPOCH=1682704185
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/cogl
 cp %{_builddir}/cogl-%{version}/COPYING %{buildroot}/usr/share/package-licenses/cogl/c40ca709f2b0391c439d2a9dce38541da745a1b9 || :
@@ -154,6 +169,10 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libcogl-gles2.so
+/V3/usr/lib64/libcogl-pango.so
+/V3/usr/lib64/libcogl-path.so
+/V3/usr/lib64/libcogl.so
 /usr/include/cogl/cogl-gles2/GLES2/gl2.h
 /usr/include/cogl/cogl-gles2/GLES2/gl2ext.h
 /usr/include/cogl/cogl-gles2/GLES2/gl2platform.h
@@ -256,10 +275,6 @@ popd
 /usr/include/cogl/cogl/gl-prototypes/cogl-glsl-functions.h
 /usr/include/cogl/cogl/gl-prototypes/cogl-in-gles-core-functions.h
 /usr/include/cogl/cogl/gl-prototypes/cogl-in-gles2-core-functions.h
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-gles2.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-pango.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-path.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl.so
 /usr/lib64/libcogl-gles2.so
 /usr/lib64/libcogl-pango.so
 /usr/lib64/libcogl-path.so
@@ -276,14 +291,14 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-gles2.so.20
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-gles2.so.20.4.3
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-pango.so.20
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-pango.so.20.4.3
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-path.so.20
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl-path.so.20.4.3
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl.so.20
-/usr/lib64/glibc-hwcaps/x86-64-v3/libcogl.so.20.4.3
+/V3/usr/lib64/libcogl-gles2.so.20
+/V3/usr/lib64/libcogl-gles2.so.20.4.3
+/V3/usr/lib64/libcogl-pango.so.20
+/V3/usr/lib64/libcogl-pango.so.20.4.3
+/V3/usr/lib64/libcogl-path.so.20
+/V3/usr/lib64/libcogl-path.so.20.4.3
+/V3/usr/lib64/libcogl.so.20
+/V3/usr/lib64/libcogl.so.20.4.3
 /usr/lib64/libcogl-gles2.so.20
 /usr/lib64/libcogl-gles2.so.20.4.3
 /usr/lib64/libcogl-pango.so.20
