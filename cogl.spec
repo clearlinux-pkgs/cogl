@@ -5,7 +5,7 @@
 #
 Name     : cogl
 Version  : 1.22.8
-Release  : 36
+Release  : 37
 URL      : https://download.gnome.org/sources/cogl/1.22/cogl-1.22.8.tar.xz
 Source0  : https://download.gnome.org/sources/cogl/1.22/cogl-1.22.8.tar.xz
 Summary  : An object oriented GL/GLES Abstraction/Utility Layer
@@ -103,15 +103,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682704185
+export SOURCE_DATE_EPOCH=1685491965
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %configure --disable-static --enable-cogl-gles2=yes \
 --enable-gles2=yes \
 --enable-gl=yes \
@@ -143,7 +143,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1682704185
+export SOURCE_DATE_EPOCH=1685491965
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/cogl
 cp %{_builddir}/cogl-%{version}/COPYING %{buildroot}/usr/share/package-licenses/cogl/c40ca709f2b0391c439d2a9dce38541da745a1b9 || :
@@ -169,10 +169,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libcogl-gles2.so
-/V3/usr/lib64/libcogl-pango.so
-/V3/usr/lib64/libcogl-path.so
-/V3/usr/lib64/libcogl.so
 /usr/include/cogl/cogl-gles2/GLES2/gl2.h
 /usr/include/cogl/cogl-gles2/GLES2/gl2ext.h
 /usr/include/cogl/cogl-gles2/GLES2/gl2platform.h
@@ -291,13 +287,9 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libcogl-gles2.so.20
 /V3/usr/lib64/libcogl-gles2.so.20.4.3
-/V3/usr/lib64/libcogl-pango.so.20
 /V3/usr/lib64/libcogl-pango.so.20.4.3
-/V3/usr/lib64/libcogl-path.so.20
 /V3/usr/lib64/libcogl-path.so.20.4.3
-/V3/usr/lib64/libcogl.so.20
 /V3/usr/lib64/libcogl.so.20.4.3
 /usr/lib64/libcogl-gles2.so.20
 /usr/lib64/libcogl-gles2.so.20.4.3
